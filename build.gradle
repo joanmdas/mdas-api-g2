@@ -10,6 +10,10 @@ repositories {
 dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.12.1'
     implementation 'com.vlkan.log4j2:log4j2-logstash-layout:0.19'
+    implementation group: 'io.github.openfeign', name: 'feign-core', version: '11.1'
+    implementation group: 'io.github.openfeign', name: 'feign-jackson', version: '11.1'
+
+
 
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
