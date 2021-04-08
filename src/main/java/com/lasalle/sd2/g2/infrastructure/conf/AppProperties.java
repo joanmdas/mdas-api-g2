@@ -22,4 +22,8 @@ public class AppProperties {
     public static String getBaseUrl() {
         return APP_PROPERTIES.getProperty("pokeapi.baseurl");
     }
+
+    public static String getServerPort() {
+        return (String) APP_PROPERTIES.getOrDefault("server.port", "8090");
+    }
 }
