@@ -4,6 +4,7 @@ import com.lasalle.sd2.g2.domain.PokemonRepository;
 import com.lasalle.sd2.g2.domain.PokemonTypes;
 import com.lasalle.sd2.g2.infrastructure.conf.AppProperties;
 import com.lasalle.sd2.g2.infrastructure.dto.PokemonTypesDto;
+import com.lasalle.sd2.g2.infrastructure.server.CustomErrorDecode;
 import feign.Feign;
 import feign.Request;
 import feign.jackson.JacksonDecoder;
@@ -20,6 +21,7 @@ public class PokeApiRestCaller implements PokemonRepository {
             .encoder(new JacksonEncoder())
             .decoder(new JacksonDecoder())
             .options(new Request.Options(10, TimeUnit.SECONDS, 30, TimeUnit.SECONDS, false))
+            .errorDecoder(new CustomErrorDecode())
             .target(PokeApiRepository.class, AppProperties.getBaseUrl());
     }
 

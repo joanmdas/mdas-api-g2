@@ -1,11 +1,14 @@
 package com.lasalle.sd2.g2;
 
 import com.lasalle.sd2.g2.application.ObtainPokemonTypes;
-import com.lasalle.sd2.g2.domain.PokemonTypes;
 import com.lasalle.sd2.g2.infrastructure.conf.AppProperties;
+import com.lasalle.sd2.g2.infrastructure.controller.PokemonTypeCommandLine;
+import com.lasalle.sd2.g2.infrastructure.controller.ShutdownServlet;
 import com.lasalle.sd2.g2.infrastructure.repository.PokeApiRestCaller;
+import com.lasalle.sd2.g2.infrastructure.server.JettyServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.jetty.server.Server;
 
 import java.io.IOException;
 
@@ -13,7 +16,7 @@ public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         try {
             AppProperties.loadAppProperties();
@@ -21,12 +24,20 @@ public class Main {
             logger.error("Error loading application properties");
         }
 
-        PokeApiRestCaller pokeApiRestCaller = new PokeApiRestCaller();
+        if ("server".equals(args[0])) {
+            Server server = new Server();
 
-        ObtainPokemonTypes obtainPokemonTypes = new ObtainPokemonTypes(pokeApiRestCaller);
-        PokemonTypes pokemonTypes = obtainPokemonTypes.getPokemonTypes(args[0]);
+            ShutdownServlet shutdownServlet = new ShutdownServlet(server);
 
-        logger.info("Found {} types", pokemonTypes.getTypes().size());
-        logger.info("Type: {}", pokemonTypes.getTypes());
+            JettyServer jettyServer = new JettyServer(server);
+            jettyServer.start();
+        }
+        else {
+            PokeApiRestCaller pokeApiRestCaller = new PokeApiRestCaller();
+            ObtainPokemonTypes obtainPokemonTypes = new ObtainPokemonTypes(pokeApiRestCaller);
+
+            PokemonTypeCommandLine pokemonTypeCommandLine = new PokemonTypeCommandLine(obtainPokemonTypes);
+            pokemonTypeCommandLine.getPokemonTypes(args[0]);
+        }
     }
 }
