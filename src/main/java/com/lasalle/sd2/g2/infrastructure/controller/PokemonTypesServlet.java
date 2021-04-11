@@ -5,7 +5,6 @@ import com.lasalle.sd2.g2.application.ObtainPokemonTypes;
 import com.lasalle.sd2.g2.domain.PokemonTypes;
 import com.lasalle.sd2.g2.infrastructure.dto.ErrorMessageDto;
 import com.lasalle.sd2.g2.infrastructure.repository.PokeApiRestCaller;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,13 +17,13 @@ public class PokemonTypesServlet extends HttpServlet {
     private static final long serialVersionUID = -6810690091868968761L;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //Obtain pokemon from url
         String pathInfo = req.getPathInfo();
 
         PokeApiRestCaller pokeApiRestCaller = new PokeApiRestCaller();
-
         ObtainPokemonTypes obtainPokemonTypes = new ObtainPokemonTypes(pokeApiRestCaller);
+
         PokemonTypes pokemonTypes;
         try {
             pokemonTypes = obtainPokemonTypes.getPokemonTypes(pathInfo.split("/")[1]);

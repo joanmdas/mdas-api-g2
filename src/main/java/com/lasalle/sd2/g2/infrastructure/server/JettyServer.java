@@ -13,10 +13,10 @@ public class JettyServer {
 
     private static final Logger logger = LogManager.getLogger(JettyServer.class);
 
-    private final Server server;
+    private final Server server = new Server();
 
-    public JettyServer(Server server) {
-        this.server = server;
+    public JettyServer() {
+        //Default constructor
     }
 
     public void start() throws Exception {

@@ -3,27 +3,18 @@ package com.lasalle.sd2.g2.infrastructure.dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class PokemonTypesDto implements Serializable {
 
     private static final long serialVersionUID = 7776157874263938718L;
 
-    private List<PokemonTypeInfoDto> types;
+    private List<PokemonTypesInfoDto> types;
 
     public PokemonTypesDto() {
-        //Default constructor
+        //Default creator needed by feign library
     }
 
-    public PokemonTypesDto(List<PokemonTypeInfoDto> types) {
-        this.types = types;
-    }
-
-    public List<PokemonTypeInfoDto> getTypes() {
-        return types;
-    }
-
-    public void setTypes(List<PokemonTypeInfoDto> types) {
+    public void setTypes(List<PokemonTypesInfoDto> types) {
         this.types = types;
     }
 
@@ -33,23 +24,4 @@ public class PokemonTypesDto implements Serializable {
         return typeList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PokemonTypesDto that = (PokemonTypesDto) o;
-        return Objects.equals(types, that.types);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(types);
-    }
-
-    @Override
-    public String toString() {
-        return "PokemonTypes{" +
-            "types=" + types +
-            '}';
-    }
 }
