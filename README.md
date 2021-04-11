@@ -1,22 +1,32 @@
-# MDAS diseño de software 2
+# MDAS Disseny de Software 2
+
+## Pre-conditions
+- Java 11 installed
+- make installed in order to execute the Makefile
 
 ## Build
 1) `make build`
 2) `make test`
-Nota: se necesita acceso a internet para ejecutar los tests de forma satisfactoria.
+Note: It's necesary an Internet connection to execute the test successfully.
 
-## Puesta en marcha en terminal
+## Execute with terminal
 ```
+java -jar ./build/libs/mdas-api-g2.jar <PokemonName>
+java -jar ./build/libs/mdas-api-g2.jar <PokemonId>
 java -jar ./build/libs/mdas-api-g2.jar charizard
+java -jar ./build/libs/mdas-api-g2.jar 100
 ```
 
-## Puesta en marcha en servidor
+## Execute with server
 ```
 java -jar ./build/libs/mdas-api-g2.jar server
 ```
-Nota: es igual que para el terminal, pero antes de poner el Pokemon, se pone `server`.
+Note: same as executing with terminal, but insted of `<PokemonId>` use `server`.
 
-Para acceder al servidor en local:
+Access in local with `curl` or directly with web browser:
 ```
+curl http://127.0.0.1:8090/pokemonTypes/<PokemonName>
+curl http://127.0.0.1:8090/pokemonTypes/<PokemonId>
 curl http://127.0.0.1:8090/pokemonTypes/charizard
+curl http://127.0.0.1:8090/pokemonTypes/100
 ```
