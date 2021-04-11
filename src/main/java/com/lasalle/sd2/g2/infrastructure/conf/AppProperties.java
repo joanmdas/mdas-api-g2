@@ -14,7 +14,7 @@ public class AppProperties {
     }
 
     public static void loadAppProperties() throws IOException {
-        try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
+        try (InputStream input = AppProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
             APP_PROPERTIES.load(input);
         }
     }
