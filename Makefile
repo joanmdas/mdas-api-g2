@@ -1,9 +1,9 @@
 .PONY: all build test clean
 
-all: build
+all: clean build
 
 build:
-	@./gradlew assemble --warning-mode all
+	@./gradlew build --warning-mode all
 
 clean:
 	@./gradlew clean --warning-mode all
