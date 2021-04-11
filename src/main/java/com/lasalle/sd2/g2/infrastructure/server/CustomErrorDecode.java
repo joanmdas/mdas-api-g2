@@ -14,7 +14,8 @@ public class CustomErrorDecode implements ErrorDecoder {
     public Exception decode(String methodKey, Response response) {
 
         if (response.status() != 404) {
-            logger.warn("Unexpected error: {}", response.reason());
+            logger.error("Unexpected error: {}", response.reason());
+            return new PokemonTypesException("Service unavailable");
         }
         return new PokemonTypesException("Pokemon not found");
     }

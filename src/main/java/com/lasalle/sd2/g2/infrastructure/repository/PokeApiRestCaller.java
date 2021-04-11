@@ -29,9 +29,6 @@ public class PokeApiRestCaller implements PokemonRepository {
     public PokemonTypes getPokemonTypes(String pokemonName) {
         PokemonTypesDto pokemonTypesDto = pokeApiRepository.getPokemonTypes(pokemonName);
 
-        PokemonTypes pokemonTypes = new PokemonTypes();
-        pokemonTypes.setTypes(pokemonTypesDto.getPokemonTypes());
-
-        return pokemonTypes;
+        return new PokemonTypes(pokemonTypesDto.getPokemonTypes());
     }
 }
