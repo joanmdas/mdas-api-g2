@@ -1,9 +1,9 @@
 package com.lasalle.sd2.g2;
 
-import com.lasalle.sd2.g2.application.ObtainPokemonTypes;
+import com.lasalle.sd2.g2.types.application.ObtainPokemonTypes;
+import com.lasalle.sd2.g2.types.infrastructure.controller.PokemonTypeCommandLine;
+import com.lasalle.sd2.g2.types.infrastructure.repository.PokeApiRestCaller;
 import com.lasalle.sd2.g2.infrastructure.conf.AppProperties;
-import com.lasalle.sd2.g2.infrastructure.controller.PokemonTypeCommandLine;
-import com.lasalle.sd2.g2.infrastructure.repository.PokeApiRestCaller;
 import com.lasalle.sd2.g2.infrastructure.server.JettyServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +18,7 @@ public class Main {
 
         try {
             AppProperties.loadAppProperties();
+            AppProperties.sendPropertiesToTypes();
         } catch (IOException e) {
             logger.error("Error loading application properties");
         }

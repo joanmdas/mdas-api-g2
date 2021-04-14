@@ -1,0 +1,4 @@
+rootProject.name = 'mdas-api-g2'
+include 'types'
+include 'users'
+
