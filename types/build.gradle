@@ -1,23 +1,23 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
 
-sourceCompatibility = 11
-targetCompatibility = 11
+group 'com.lasalle.sd2.g2'
+version '0.0.1'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-
-    implementation project(':types')
-    implementation project(':users')
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
     implementation 'io.github.openfeign:feign-core:11.1'
     implementation 'io.github.openfeign:feign-jackson:11.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.eclipse.jetty:jetty-server:11.0.2'
     implementation 'org.eclipse.jetty:jetty-servlet:11.0.2'
 
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
 }
 
 test {
@@ -25,15 +25,5 @@ test {
 
     testLogging {
         events "passed", "skipped", "failed"
-    }
-}
-
-jar {
-    manifest {
-        attributes "Main-Class": "com.lasalle.sd2.g2.Main"
-    }
-
-    from {
-        configurations.compileClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

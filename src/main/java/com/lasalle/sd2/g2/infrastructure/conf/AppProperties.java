@@ -1,6 +1,7 @@
 package com.lasalle.sd2.g2.infrastructure.conf;
 
-import java.io.FileInputStream;
+import com.lasalle.sd2.g2.types.infrastructure.conf.TypesConfiguration;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -19,8 +20,8 @@ public class AppProperties {
         }
     }
 
-    public static String getBaseUrl() {
-        return APP_PROPERTIES.getProperty("pokeapi.baseurl");
+    public static void sendPropertiesToTypes() {
+        TypesConfiguration.setBaseUrl(APP_PROPERTIES.getProperty("pokeapi.baseurl"));
     }
 
     public static String getServerPort() {
