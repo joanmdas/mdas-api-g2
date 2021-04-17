@@ -24,7 +24,7 @@ java -jar ./build/libs/mdas-api-g2.jar server
 Note: same as executing with terminal, but instead of `<PokemonId>` use `server`.
 
 In order to test the endpoints, you can import the postman [collection](/docs/Disseny2.postman_collection.json)
-and [environment](/docs/Disseny2.postman_environment.json).
+and [environment](/docs/Disseny2.postman_environment.json) that are found in the docs folder.
 
 ## Types module
 Execute "Get Pokemon Types" in the postman application. You can change the pokemon to search by modifying the last
