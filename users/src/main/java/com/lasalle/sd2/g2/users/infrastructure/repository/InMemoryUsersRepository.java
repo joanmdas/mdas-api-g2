@@ -10,16 +10,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryUsersRepository implements UsersRepository {
 
-    private final Map<String, User> userMap = new ConcurrentHashMap<>();
+    private static final Map<String, User> USER_MAP = new ConcurrentHashMap<>();
 
     @Override
     public void save(User user) {
-        userMap.put(user.getId(), user);
+        USER_MAP.put(user.getId(), user);
     }
 
     @Override
     public User findByUuid(String userId) throws UserNotFoundException {
-        User user = userMap.get(userId);
+        User user = USER_MAP.get(userId);
 
         if (Objects.isNull(user)) {
             throw new UserNotFoundException("User " + userId + " not found");
