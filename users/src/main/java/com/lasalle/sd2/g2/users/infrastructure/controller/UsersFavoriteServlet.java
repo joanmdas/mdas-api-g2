@@ -37,6 +37,6 @@ public class UsersFavoriteServlet extends HttpServlet {
             resp.setContentType("application/json");
         }
 
-        resp.setStatus(HttpServletResponse.SC_OK);
+        resp.setStatus(HttpServletResponse.SC_CREATED);
     }
 }
