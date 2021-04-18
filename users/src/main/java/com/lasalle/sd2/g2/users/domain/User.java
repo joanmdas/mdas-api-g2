@@ -18,12 +18,7 @@ public class User {
         return id.getUserId();
     }
 
-    public FavoritePokemons getFavorites() {
-        return favorites;
-    }
-
-    public void addFavoritePokemon(Integer pokemonId) {
-        Pokemon pokemon = Pokemon.create(pokemonId);
+    public void addFavoritePokemon(Pokemon pokemon) {
         favorites.add(pokemon);
     }
 }

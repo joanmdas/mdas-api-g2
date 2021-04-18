@@ -11,10 +11,10 @@ public class CreateUser {
         this.repository = repository;
     }
 
-    public String execute() {
+    public User execute() {
         User user = User.create();
         repository.save(user);
-        return user.getId();
+        return user;
     }
 
 }

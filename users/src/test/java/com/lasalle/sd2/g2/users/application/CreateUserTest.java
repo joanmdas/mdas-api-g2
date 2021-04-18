@@ -1,5 +1,6 @@
 package com.lasalle.sd2.g2.users.application;
 
+import com.lasalle.sd2.g2.users.domain.User;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
 import com.lasalle.sd2.g2.users.infrastructure.repository.InMemoryUsersRepository;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,8 +20,8 @@ class CreateUserTest {
     @Test
     void execute() {
         CreateUser createUser = new CreateUser(repository);
-        String userId = createUser.execute();
+        User userId = createUser.execute();
         assertNotNull(userId);
-        assertFalse(userId.isBlank());
+        assertFalse(userId.getId().isBlank());
     }
 }

@@ -1,25 +1,35 @@
 package com.lasalle.sd2.g2.users.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class FavoritePokemonsTest {
+
+    @Mock
+    private Pokemon pokemon;
 
     @Test
     void create() {
         FavoritePokemons favoritePokemons = FavoritePokemons.create();
         assertNotNull(favoritePokemons);
-        assertTrue(favoritePokemons.getPokemons().isEmpty());
     }
 
     @Test
     void add() {
-        FavoritePokemons favoritePokemons = FavoritePokemons.create();
-        Pokemon testPokemon = Pokemon.create(23);
-        favoritePokemons.add(testPokemon);
+        Set<Pokemon> pokemons = new HashSet<>();
+        FavoritePokemons favoritePokemons = new FavoritePokemons(pokemons);
+        favoritePokemons.add(pokemon);
 
-        assertEquals(1, favoritePokemons.getPokemons().size());
-        assertTrue(favoritePokemons.getPokemons().contains(testPokemon));
+        assertNotNull(favoritePokemons);
+        assertEquals(1, pokemons.size());
+        assertTrue(pokemons.contains(pokemon));
     }
 }

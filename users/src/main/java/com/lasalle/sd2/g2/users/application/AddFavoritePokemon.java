@@ -1,8 +1,8 @@
 package com.lasalle.sd2.g2.users.application;
 
-import com.lasalle.sd2.g2.users.domain.User;
-import com.lasalle.sd2.g2.users.domain.UserNotFoundException;
-import com.lasalle.sd2.g2.users.domain.UsersRepository;
+import com.lasalle.sd2.g2.users.domain.*;
+
+import java.util.UUID;
 
 public class AddFavoritePokemon {
 
@@ -13,8 +13,8 @@ public class AddFavoritePokemon {
     }
 
     public void execute(String userId, Integer pokemonId) throws UserNotFoundException {
-        User user = repository.findByUuid(userId);
-        user.addFavoritePokemon(pokemonId);
+        User user = repository.findByUserId(new UserId(UUID.fromString(userId)));
+        user.addFavoritePokemon(new Pokemon(pokemonId));
         repository.save(user);
     }
 }

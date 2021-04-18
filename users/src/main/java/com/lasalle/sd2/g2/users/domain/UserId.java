@@ -6,7 +6,7 @@ public class UserId {
 
     private final UUID id;
 
-    private UserId(UUID id) {
+    public UserId(UUID id) {
         this.id = id;
     }
 
