@@ -6,7 +6,7 @@ public class Pokemon {
 
     private final Integer id;
 
-    private Pokemon(Integer id) {
+    public Pokemon(Integer id) {
         this.id = id;
     }
 

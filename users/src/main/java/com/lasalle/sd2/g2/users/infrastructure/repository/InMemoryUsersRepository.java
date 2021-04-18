@@ -1,6 +1,7 @@
 package com.lasalle.sd2.g2.users.infrastructure.repository;
 
 import com.lasalle.sd2.g2.users.domain.User;
+import com.lasalle.sd2.g2.users.domain.UserId;
 import com.lasalle.sd2.g2.users.domain.UserNotFoundException;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
 
@@ -18,8 +19,8 @@ public class InMemoryUsersRepository implements UsersRepository {
     }
 
     @Override
-    public User findByUuid(String userId) throws UserNotFoundException {
-        User user = USER_MAP.get(userId);
+    public User findByUserId(UserId userId) throws UserNotFoundException {
+        User user = USER_MAP.get(userId.getUserId());
 
         if (Objects.isNull(user)) {
             throw new UserNotFoundException("User " + userId + " not found");

@@ -7,19 +7,16 @@ public class FavoritePokemons {
 
     private final Set<Pokemon> pokemons;
 
-    private FavoritePokemons() {
-        pokemons = new HashSet<>();
+    public FavoritePokemons(Set<Pokemon> pokemons) {
+        this.pokemons = pokemons;
     }
 
     public static FavoritePokemons create() {
-        return new FavoritePokemons();
+        return new FavoritePokemons(new HashSet<>());
     }
 
     public void add(Pokemon pokemon) {
         pokemons.add(pokemon);
     }
 
-    public Set<Pokemon> getPokemons() {
-        return pokemons;
-    }
 }
