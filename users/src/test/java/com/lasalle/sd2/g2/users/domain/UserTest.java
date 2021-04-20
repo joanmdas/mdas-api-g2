@@ -22,7 +22,7 @@ class UserTest {
     void create() {
         User user = User.create();
         assertNotNull(user);
-        assertNotNull(user.getId());
+        assertNotNull(user.getUserId());
     }
 
     @Test

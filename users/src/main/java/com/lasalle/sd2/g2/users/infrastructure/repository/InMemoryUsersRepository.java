@@ -15,12 +15,12 @@ public class InMemoryUsersRepository implements UsersRepository {
 
     @Override
     public void save(User user) {
-        USER_MAP.put(user.getId(), user);
+        USER_MAP.put(user.getUserId().toString(), user);
     }
 
     @Override
     public User findByUserId(UserId userId) throws UserNotFoundException {
-        User user = USER_MAP.get(userId.getUserId());
+        User user = USER_MAP.get(userId.toString());
 
         if (Objects.isNull(user)) {
             throw new UserNotFoundException("User " + userId + " not found");

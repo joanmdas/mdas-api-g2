@@ -14,8 +14,8 @@ public class User {
         return new User(UserId.create(), FavoritePokemons.create());
     }
 
-    public String getId() {
-        return id.getUserId();
+    public UserId getUserId() {
+        return id;
     }
 
     public void addFavoritePokemon(Pokemon pokemon) {
