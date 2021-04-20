@@ -9,6 +9,6 @@ class UserIdTest {
     @Test
     void create() {
         UserId userId = UserId.create();
-        assertNotNull(userId.getUserId());
+        assertNotNull(userId.toString());
     }
 }

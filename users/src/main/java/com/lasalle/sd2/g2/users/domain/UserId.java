@@ -14,7 +14,7 @@ public class UserId {
         return new UserId(UUID.randomUUID());
     }
 
-    public String getUserId() {
+    public String toString() {
         return id.toString();
     }
 }

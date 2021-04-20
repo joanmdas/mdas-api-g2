@@ -20,7 +20,7 @@ public class UsersServlet extends HttpServlet {
         CreateUser createUser = new CreateUser(new InMemoryUsersRepository());
 
         User user = createUser.execute();
-        CreateUserResponseBody responseBody = new CreateUserResponseBody(user.getId());
+        CreateUserResponseBody responseBody = new CreateUserResponseBody(user.getUserId().toString());
 
         resp.getWriter().println(new Gson().toJson(responseBody));
         resp.setContentType("application/json");

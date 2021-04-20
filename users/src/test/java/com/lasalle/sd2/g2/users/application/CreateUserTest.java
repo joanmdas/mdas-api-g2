@@ -22,6 +22,6 @@ class CreateUserTest {
         CreateUser createUser = new CreateUser(repository);
         User userId = createUser.execute();
         assertNotNull(userId);
-        assertFalse(userId.getId().isBlank());
+        assertFalse(userId.getUserId().toString().isBlank());
     }
 }
