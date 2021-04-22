@@ -19,7 +19,7 @@ public class PokeApiRestCaller implements PokemonRepository {
         pokeApiRepository = Feign.builder()
             .encoder(new JacksonEncoder())
             .decoder(new JacksonDecoder())
-            .options(new Request.Options(10, TimeUnit.SECONDS, 30, TimeUnit.SECONDS, false))
+            .options(new Request.Options(5, TimeUnit.SECONDS, 5, TimeUnit.SECONDS, false))
             .errorDecoder(new CustomErrorDecode())
             .target(PokeApiRepository.class, TypesConfiguration.getBaseUrl());
     }

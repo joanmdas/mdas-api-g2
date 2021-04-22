@@ -9,6 +9,7 @@ import org.mockserver.client.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.matchers.Times;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -72,34 +73,28 @@ class PokeApiRestCallerTest {
     @Test
     void timeout() {
         // Given
-        List<String> pokemonTypesList = new ArrayList<>();
-        pokemonTypesList.add("fires");
-        pokemonTypesList.add("flying");
-
-        PokemonTypes pokemonTypesExpected = new PokemonTypes(pokemonTypesList);
         PokeApiRestCaller restCaller = new PokeApiRestCaller();
 
         new MockServerClient("localhost", mockServer.getLocalPort())
             .when(request().withMethod("GET").withPath("/pokemon/charizard"), Times.exactly(1))
-            .respond(response().withStatusCode(200).withBody("{  \"types\": [\n" +
-                "    {\n" +
-                "      \"slot\": 1,\n" +
-                "      \"type\": {\n" +
-                "        \"name\": \"fires\",\n" +
-                "        \"url\": \"https://pokeapi.co/api/v2/type/10/\"\n" +
-                "      }\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"slot\": 2,\n" +
-                "      \"type\": {\n" +
-                "        \"name\": \"flying\",\n" +
-                "        \"url\": \"https://pokeapi.co/api/v2/type/3/\"\n" +
-                "      }\n" +
-                "    }\n" +
-                "  ]}").withDelay(TimeUnit.SECONDS, 36));
+            .respond(response().withDelay(TimeUnit.DAYS, 36));
 
         // Then
-        // TODO assertThrows
-        restCaller.getPokemonTypes("charizard");
+        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes("charizard"));
+        assertEquals("Pokemon not found", exception.getUndeclaredThrowable().getMessage());
+    }
+
+    @Test
+    void getPokemonNotExist() {
+        // Given
+        PokeApiRestCaller restCaller = new PokeApiRestCaller();
+
+        new MockServerClient("localhost", mockServer.getLocalPort())
+            .when(request().withMethod("GET").withPath("/pokemon/charizard"), Times.exactly(1))
+            .respond(response().withStatusCode(404).withDelay(TimeUnit.MICROSECONDS, 30));
+
+        // Then
+        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes("charizardPicachu"));
+        assertEquals("Pokemon not found", exception.getUndeclaredThrowable().getMessage());
     }
 }
