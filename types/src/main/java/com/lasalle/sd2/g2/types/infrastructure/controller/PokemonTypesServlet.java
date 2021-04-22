@@ -28,13 +28,14 @@ public class PokemonTypesServlet extends HttpServlet {
         try {
             pokemonTypes = obtainPokemonTypes.getPokemonTypes(pathInfo.split("/")[1]);
             resp.getWriter().println(new Gson().toJson(pokemonTypes));
+            resp.setContentType("application/json");
+            resp.setStatus(HttpServletResponse.SC_OK);
         }
         catch (UndeclaredThrowableException e) {
             ErrorMessageDto errorMessageDto = new ErrorMessageDto(e.getUndeclaredThrowable().getMessage());
             resp.getWriter().println(new Gson().toJson(errorMessageDto));
+            resp.setContentType("application/json");
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
-
-        resp.setContentType("application/json");
-        resp.setStatus(HttpServletResponse.SC_OK);
     }
 }
