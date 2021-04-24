@@ -1,6 +1,7 @@
 package com.lasalle.sd2.g2.infrastructure.server;
 
 import com.lasalle.sd2.g2.infrastructure.conf.AppProperties;
+import com.lasalle.sd2.g2.pokemons.infrastructure.controller.PokemonInfoServlet;
 import com.lasalle.sd2.g2.types.infrastructure.controller.PokemonTypesServlet;
 import com.lasalle.sd2.g2.users.infrastructure.controller.UsersFavoriteServlet;
 import com.lasalle.sd2.g2.users.infrastructure.controller.UsersServlet;
@@ -32,6 +33,7 @@ public class JettyServer {
             servletHandler.addServletWithMapping(PokemonTypesServlet.class, "/pokemonTypes/*");
             servletHandler.addServletWithMapping(UsersServlet.class, "/users");
             servletHandler.addServletWithMapping(UsersFavoriteServlet.class, "/users/favorite");
+            servletHandler.addServletWithMapping(PokemonInfoServlet.class, "/pokemonDetails/*");
 
             server.start();
             server.join();

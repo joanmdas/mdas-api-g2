@@ -19,6 +19,7 @@ public class Main {
         try {
             AppProperties.loadAppProperties();
             AppProperties.sendPropertiesToTypes();
+            AppProperties.sendPropertiesToPokemons();
         } catch (IOException e) {
             logger.error("Error loading application properties");
         }
