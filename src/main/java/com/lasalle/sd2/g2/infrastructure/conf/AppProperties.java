@@ -1,5 +1,6 @@
 package com.lasalle.sd2.g2.infrastructure.conf;
 
+import com.lasalle.sd2.g2.pokemons.infrastructure.conf.PokemonsConfiguration;
 import com.lasalle.sd2.g2.types.infrastructure.conf.TypesConfiguration;
 
 import java.io.IOException;
@@ -22,6 +23,10 @@ public class AppProperties {
 
     public static void sendPropertiesToTypes() {
         TypesConfiguration.setBaseUrl(APP_PROPERTIES.getProperty("pokeapi.baseurl"));
+    }
+
+    public static void sendPropertiesToPokemons() {
+        PokemonsConfiguration.setBaseUrl(APP_PROPERTIES.getProperty("pokeapi.baseurl"));
     }
 
     public static String getServerPort() {

@@ -11,6 +11,7 @@ dependencies {
 
     implementation project(':types')
     implementation project(':users')
+    implementation project(':pokemons')
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
     implementation 'io.github.openfeign:feign-core:11.1'
     implementation 'io.github.openfeign:feign-jackson:11.1'
