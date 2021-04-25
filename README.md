@@ -49,3 +49,13 @@ Execute "Add favorite pokemon" in the postman application. This request contains
 user identifier generated in the last execution of "Create user".
 
 The expected response is 201 code. It can also return a JSON with the message that the user was not found.
+
+
+## Pokemons module
+Execute "Create Pokemon Details" in the postman application.
+
+The response body will contain the pokemon information based on the id provided in the URI.
+
+The expected response is 200 code with a JSON body. It can return a 404 with a message of pokemon not found when
+the pokemon does not exist or there was a timeout in the connection to the external repository. It can also return a 404
+with a service unavailable if the external repository return an error.
