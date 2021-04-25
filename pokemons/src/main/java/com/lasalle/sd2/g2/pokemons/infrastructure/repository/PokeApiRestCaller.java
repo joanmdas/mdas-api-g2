@@ -4,7 +4,7 @@ import com.lasalle.sd2.g2.pokemons.domain.PokemonDetails;
 import com.lasalle.sd2.g2.pokemons.domain.PokemonId;
 import com.lasalle.sd2.g2.pokemons.domain.PokemonRepository;
 import com.lasalle.sd2.g2.pokemons.infrastructure.conf.PokemonsConfiguration;
-import com.lasalle.sd2.g2.pokemons.infrastructure.dto.PokemonDetailsDto;
+import com.lasalle.sd2.g2.pokemons.infrastructure.repository.pokeapi.PokeApiDetailsResponse;
 import feign.Feign;
 import feign.Request;
 import feign.jackson.JacksonDecoder;
@@ -27,8 +27,8 @@ public class PokeApiRestCaller implements PokemonRepository {
 
     @Override
     public PokemonDetails getPokemonDetails(PokemonId pokemonId) {
-        PokemonDetailsDto pokemonDetailsDto = pokeApiRepository.getPokemonDetails(pokemonId.getId());
+        PokeApiDetailsResponse pokeApiDetailsResponse = pokeApiRepository.getPokemonDetails(pokemonId.getId());
 
-        return pokemonDetailsDto.getDetails();
+        return pokeApiDetailsResponse.getDetails();
     }
 }

@@ -2,9 +2,8 @@ package com.lasalle.sd2.g2.pokemons.infrastructure.controller;
 
 import com.google.gson.Gson;
 import com.lasalle.sd2.g2.pokemons.application.GetPokemonDetails;
-import com.lasalle.sd2.g2.pokemons.domain.PokemonDetails;
-import com.lasalle.sd2.g2.pokemons.domain.PokemonId;
-import com.lasalle.sd2.g2.pokemons.infrastructure.dto.ErrorMessageDto;
+import com.lasalle.sd2.g2.pokemons.application.dto.PokemonDetailsResponse;
+import com.lasalle.sd2.g2.pokemons.application.dto.ErrorMessageDto;
 import com.lasalle.sd2.g2.pokemons.infrastructure.repository.PokeApiRestCaller;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,16 +20,16 @@ public class PokemonInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //Obtain pokemon id from url
         String pathInfo = req.getPathInfo();
-        PokemonId pokemonId = new PokemonId(Integer.valueOf(pathInfo.split("/")[1]));
+        Integer id = Integer.valueOf(pathInfo.split("/")[1]);
 
         PokeApiRestCaller pokeApiRestCaller = new PokeApiRestCaller();
         GetPokemonDetails getPokemonDetails = new GetPokemonDetails(pokeApiRestCaller);
 
-        PokemonDetails pokemonDetails;
+        PokemonDetailsResponse pokemonDetailsResponse;
 
         try {
-            pokemonDetails = getPokemonDetails.execute(pokemonId);
-            resp.getWriter().println(new Gson().toJson(pokemonDetails));
+            pokemonDetailsResponse = getPokemonDetails.execute(id);
+            resp.getWriter().println(new Gson().toJson(pokemonDetailsResponse));
             resp.setContentType("application/json");
             resp.setStatus(HttpServletResponse.SC_OK);
         }

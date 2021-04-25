@@ -2,28 +2,28 @@ package com.lasalle.sd2.g2.pokemons.domain;
 
 import java.util.Objects;
 
-public class PokemonId {
+public class PokemonName {
 
-    private final Integer id;
+    private final String name;
 
-    public PokemonId(Integer id) {
-        this.id = id;
+    public PokemonName(String name) {
+        this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PokemonId pokemonId = (PokemonId) o;
-        return Objects.equals(id, pokemonId.id);
+        PokemonName that = (PokemonName) o;
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(name);
     }
 }
