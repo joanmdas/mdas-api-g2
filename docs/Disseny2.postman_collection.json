@@ -90,6 +90,26 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Pokemon Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/pokemonDetails/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"pokemonDetails",
+						"15"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
