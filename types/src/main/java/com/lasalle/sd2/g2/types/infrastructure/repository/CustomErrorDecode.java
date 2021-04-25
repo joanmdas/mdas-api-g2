@@ -1,6 +1,6 @@
 package com.lasalle.sd2.g2.types.infrastructure.repository;
 
-import com.lasalle.sd2.g2.types.domain.PokemonTypesException;
+import com.lasalle.sd2.g2.types.domain.exception.PokemonTypesException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import org.apache.logging.log4j.LogManager;

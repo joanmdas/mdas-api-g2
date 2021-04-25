@@ -1,14 +1,14 @@
-package com.lasalle.sd2.g2.types.infrastructure.dto;
+package com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi;
 
 import java.io.Serializable;
 
-public class PokemonTypeDto implements Serializable {
+public class PokeApiTypeResponse implements Serializable {
 
     private static final long serialVersionUID = 2638483196131838284L;
 
     private String name;
 
-    public PokemonTypeDto() {
+    public PokeApiTypeResponse() {
         //Default creator needed by feign library
     }
 

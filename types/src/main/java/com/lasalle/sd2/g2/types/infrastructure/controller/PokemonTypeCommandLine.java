@@ -1,7 +1,7 @@
 package com.lasalle.sd2.g2.types.infrastructure.controller;
 
 import com.lasalle.sd2.g2.types.application.ObtainPokemonTypes;
-import com.lasalle.sd2.g2.types.domain.PokemonTypes;
+import com.lasalle.sd2.g2.types.application.dto.PokemonTypesResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +19,7 @@ public class PokemonTypeCommandLine {
 
     public void getPokemonTypes(String pokemonName) {
         try {
-            PokemonTypes pokemonTypes = obtainPokemonTypes.getPokemonTypes(pokemonName);
+            PokemonTypesResponse pokemonTypes = obtainPokemonTypes.execute(pokemonName);
 
             logger.info("Found {} types", pokemonTypes.getTypes().size());
             logger.info("Type: {}", pokemonTypes.getTypes());

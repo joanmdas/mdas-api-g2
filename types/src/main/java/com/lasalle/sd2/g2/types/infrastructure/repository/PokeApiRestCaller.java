@@ -1,9 +1,10 @@
 package com.lasalle.sd2.g2.types.infrastructure.repository;
 
+import com.lasalle.sd2.g2.types.domain.PokemonName;
 import com.lasalle.sd2.g2.types.domain.PokemonRepository;
 import com.lasalle.sd2.g2.types.domain.PokemonTypes;
 import com.lasalle.sd2.g2.types.infrastructure.conf.TypesConfiguration;
-import com.lasalle.sd2.g2.types.infrastructure.dto.PokemonTypesDto;
+import com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi.PokeApiTypesResponse;
 import feign.Feign;
 import feign.Request;
 import feign.jackson.JacksonDecoder;
@@ -25,9 +26,9 @@ public class PokeApiRestCaller implements PokemonRepository {
     }
 
     @Override
-    public PokemonTypes getPokemonTypes(String pokemonName) {
-        PokemonTypesDto pokemonTypesDto = pokeApiRepository.getPokemonTypes(pokemonName);
+    public PokemonTypes getPokemonTypes(PokemonName name) {
+        PokeApiTypesResponse pokeApiTypesResponse = pokeApiRepository.getPokemonTypes(name.getName());
 
-        return new PokemonTypes(pokemonTypesDto.getPokemonTypes());
+        return new PokemonTypes(pokeApiTypesResponse.getPokemonTypes());
     }
 }

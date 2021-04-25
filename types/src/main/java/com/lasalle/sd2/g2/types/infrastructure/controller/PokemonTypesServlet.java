@@ -2,8 +2,8 @@ package com.lasalle.sd2.g2.types.infrastructure.controller;
 
 import com.google.gson.Gson;
 import com.lasalle.sd2.g2.types.application.ObtainPokemonTypes;
-import com.lasalle.sd2.g2.types.domain.PokemonTypes;
-import com.lasalle.sd2.g2.types.infrastructure.dto.ErrorMessageDto;
+import com.lasalle.sd2.g2.types.application.dto.PokemonTypesResponse;
+import com.lasalle.sd2.g2.types.application.dto.ErrorMessageDto;
 import com.lasalle.sd2.g2.types.infrastructure.repository.PokeApiRestCaller;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +24,10 @@ public class PokemonTypesServlet extends HttpServlet {
         PokeApiRestCaller pokeApiRestCaller = new PokeApiRestCaller();
         ObtainPokemonTypes obtainPokemonTypes = new ObtainPokemonTypes(pokeApiRestCaller);
 
-        PokemonTypes pokemonTypes;
+        PokemonTypesResponse pokemonTypesResponse;
         try {
-            pokemonTypes = obtainPokemonTypes.getPokemonTypes(pathInfo.split("/")[1]);
-            resp.getWriter().println(new Gson().toJson(pokemonTypes));
+            pokemonTypesResponse = obtainPokemonTypes.execute(pathInfo.split("/")[1]);
+            resp.getWriter().println(new Gson().toJson(pokemonTypesResponse));
             resp.setContentType("application/json");
             resp.setStatus(HttpServletResponse.SC_OK);
         }
