@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.types.domain;
+package com.lasalle.sd2.g2.types.domain.exception;
 
 public class PokemonTypesException extends Exception {
 

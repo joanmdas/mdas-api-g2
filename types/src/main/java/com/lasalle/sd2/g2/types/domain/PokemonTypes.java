@@ -1,21 +1,22 @@
 package com.lasalle.sd2.g2.types.domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PokemonTypes implements Serializable {
+public class PokemonTypes {
 
-    private static final long serialVersionUID = 7776157874263938718L;
-
-    private final List<String> types;
+    private final List<PokemonType> types;
 
     public PokemonTypes(List<String> types) {
-        this.types = types;
+        this.types = new ArrayList<>();
+        types.forEach(type -> this.types.add(new PokemonType(type)));
     }
 
     public List<String> getTypes() {
-        return types;
+        List<String> typesString = new ArrayList<>();
+        types.forEach(type -> typesString.add(type.getType()));
+        return typesString;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.types.infrastructure.dto;
+package com.lasalle.sd2.g2.types.application.dto;
 
 public class ErrorMessageDto {
 

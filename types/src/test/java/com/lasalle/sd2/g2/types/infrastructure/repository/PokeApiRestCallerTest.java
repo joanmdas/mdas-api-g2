@@ -1,5 +1,6 @@
 package com.lasalle.sd2.g2.types.infrastructure.repository;
 
+import com.lasalle.sd2.g2.types.domain.PokemonName;
 import com.lasalle.sd2.g2.types.domain.PokemonTypes;
 import com.lasalle.sd2.g2.types.infrastructure.conf.TypesConfiguration;
 import org.junit.jupiter.api.AfterAll;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockserver.client.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.matchers.Times;
+import org.mockserver.model.HttpError;
 
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
@@ -63,7 +65,7 @@ class PokeApiRestCallerTest {
                 "  ]}").withDelay(TimeUnit.MICROSECONDS, 30));
 
         // When
-        PokemonTypes charizardTypes = restCaller.getPokemonTypes("charizard");
+        PokemonTypes charizardTypes = restCaller.getPokemonTypes(new PokemonName("charizard"));
 
         // Then
         assertNotNull(charizardTypes);
@@ -77,10 +79,12 @@ class PokeApiRestCallerTest {
 
         new MockServerClient("localhost", mockServer.getLocalPort())
             .when(request().withMethod("GET").withPath("/pokemon/charizard"), Times.exactly(1))
-            .respond(response().withDelay(TimeUnit.DAYS, 36));
+            .error(HttpError.error().withDropConnection(Boolean.TRUE));
+
+        PokemonName name = new PokemonName("charizard");
 
         // Then
-        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes("charizard"));
+        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes(name));
         assertEquals("Pokemon not found", exception.getUndeclaredThrowable().getMessage());
     }
 
@@ -93,8 +97,26 @@ class PokeApiRestCallerTest {
             .when(request().withMethod("GET").withPath("/pokemon/charizard"), Times.exactly(1))
             .respond(response().withStatusCode(404).withDelay(TimeUnit.MICROSECONDS, 30));
 
+        PokemonName name = new PokemonName("charizardPikachu");
+
         // Then
-        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes("charizardPicachu"));
+        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes(name));
         assertEquals("Pokemon not found", exception.getUndeclaredThrowable().getMessage());
+    }
+
+    @Test
+    void getPokemonPokeApiError() {
+        // Given
+        PokeApiRestCaller restCaller = new PokeApiRestCaller();
+
+        new MockServerClient("localhost", mockServer.getLocalPort())
+            .when(request().withMethod("GET").withPath("/pokemon/charizard"), Times.exactly(1))
+            .respond(response().withStatusCode(500).withDelay(TimeUnit.MICROSECONDS, 30));
+
+        PokemonName name = new PokemonName("charizard");
+
+        // Then
+        UndeclaredThrowableException exception = assertThrows(UndeclaredThrowableException.class, () -> restCaller.getPokemonTypes(name));
+        assertEquals("Service unavailable", exception.getUndeclaredThrowable().getMessage());
     }
 }
