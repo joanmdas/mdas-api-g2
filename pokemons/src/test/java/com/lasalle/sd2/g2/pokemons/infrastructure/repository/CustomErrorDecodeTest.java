@@ -1,6 +1,5 @@
-package com.lasalle.sd2.g2.types.infrastructure.server;
+package com.lasalle.sd2.g2.pokemons.infrastructure.repository;
 
-import com.lasalle.sd2.g2.types.infrastructure.repository.CustomErrorDecode;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Response;
@@ -8,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CustomErrorDecodeTest {
 

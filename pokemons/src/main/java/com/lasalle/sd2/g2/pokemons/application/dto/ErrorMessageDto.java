@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.pokemons.infrastructure.dto;
+package com.lasalle.sd2.g2.pokemons.application.dto;
 
 public class ErrorMessageDto {
 
