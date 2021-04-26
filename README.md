@@ -36,6 +36,10 @@ http://localhost:8090/pokemonTypes/<PokemonId>
 http://localhost:8090/pokemonTypes/charizard
 http://localhost:8090/pokemonTypes/100
 ```
+The expected response is a 200 code, and a JSON containing the pokemon types. It can also return a 404 code when the
+pokemon was not found, there is a timeout, or the pokeapi service has a problem. In case that the server was not found
+or the pokeapi throws a timeout, the JSON message will say that the pokemon was not found, and in case that the pokeapi
+has a problem, the message will say that the service is unavailable.
 
 ## Users module
 ### Create user
@@ -48,7 +52,7 @@ in other requests.
 Execute "Add favorite pokemon" in the postman application. This request contains the header "user_id" that contains the
 user identifier generated in the last execution of "Create user".
 
-The expected response is 201 code. It can also return a JSON with the message that the user was not found.
+The expected response is 201 code. It can also return a 404 code, and a JSON with the message that the user was not found.
 
 
 ## Pokemons module
