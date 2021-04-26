@@ -1,5 +1,6 @@
 package com.lasalle.sd2.g2.users.application;
 
+import com.lasalle.sd2.g2.users.application.dto.CreateUserResponseBody;
 import com.lasalle.sd2.g2.users.domain.User;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
 import com.lasalle.sd2.g2.users.infrastructure.repository.InMemoryUsersRepository;
@@ -20,8 +21,8 @@ class CreateUserTest {
     @Test
     void execute() {
         CreateUser createUser = new CreateUser(repository);
-        User userId = createUser.execute();
-        assertNotNull(userId);
-        assertFalse(userId.getUserId().toString().isBlank());
+        CreateUserResponseBody responseBody = createUser.execute();
+        assertNotNull(responseBody);
+        assertFalse(responseBody.getUserId().isBlank());
     }
 }

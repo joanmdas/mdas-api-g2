@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.users.domain;
+package com.lasalle.sd2.g2.users.domain.exceptions;
 
 public class UserNotFoundException extends Exception {
 

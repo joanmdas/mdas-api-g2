@@ -44,8 +44,6 @@ class PokemonInfoServletTest {
 
     @Test
     void doGetOK() throws IOException {
-        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
-
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
@@ -61,6 +59,7 @@ class PokemonInfoServletTest {
                 .withBody(new String(Files.readAllBytes(Paths.get("src/test/resources/beedrill.json"))))
                 .withDelay(TimeUnit.MICROSECONDS, 30));
 
+        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
         pokemonInfoServlet.doGet(request, response);
 
         assertEquals(ID_15_POKEMON_INFO, stringWriter.toString().trim());
@@ -68,8 +67,6 @@ class PokemonInfoServletTest {
 
     @Test
     void doGetTimeout() throws IOException {
-        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
-
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
@@ -83,6 +80,7 @@ class PokemonInfoServletTest {
             .when(request().withMethod("GET").withPath("/pokemon/15"), Times.exactly(1))
             .error(HttpError.error().withDropConnection(Boolean.TRUE));
 
+        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
         pokemonInfoServlet.doGet(request, response);
 
         assertEquals(POKEMON_INFO_NOT_FOUND, stringWriter.toString().trim());
@@ -90,8 +88,6 @@ class PokemonInfoServletTest {
 
     @Test
     void doGetPokeApiError() throws IOException {
-        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
-
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
@@ -106,6 +102,7 @@ class PokemonInfoServletTest {
             .respond(response().withStatusCode(500)
                 .withDelay(TimeUnit.MICROSECONDS, 30));
 
+        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
         pokemonInfoServlet.doGet(request, response);
 
         assertEquals(POKEAPI_ERROR, stringWriter.toString().trim());
@@ -113,8 +110,6 @@ class PokemonInfoServletTest {
 
     @Test
     void doGetPokemonNotExists() throws IOException {
-        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
-
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
@@ -130,6 +125,7 @@ class PokemonInfoServletTest {
                 .withBody("Not Found")
                 .withDelay(TimeUnit.MICROSECONDS, 30));
 
+        PokemonInfoServlet pokemonInfoServlet = new PokemonInfoServlet();
         pokemonInfoServlet.doGet(request, response);
 
         assertEquals(POKEMON_INFO_NOT_FOUND, stringWriter.toString().trim());
