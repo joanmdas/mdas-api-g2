@@ -1,8 +1,5 @@
-package com.lasalle.sd2.g2.types.infrastructure.dto;
+package com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi;
 
-import com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi.PokeApiTypeResponse;
-import com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi.PokeApiTypesResponse;
-import com.lasalle.sd2.g2.types.infrastructure.repository.pokeapi.PokeApiTypesInfoResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
