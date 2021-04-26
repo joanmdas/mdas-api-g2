@@ -2,7 +2,7 @@ package com.lasalle.sd2.g2.users.infrastructure.repository;
 
 import com.lasalle.sd2.g2.users.domain.User;
 import com.lasalle.sd2.g2.users.domain.UserId;
-import com.lasalle.sd2.g2.users.domain.UserNotFoundException;
+import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
 
 import java.util.Map;

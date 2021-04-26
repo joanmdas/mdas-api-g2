@@ -2,8 +2,7 @@ package com.lasalle.sd2.g2.users.infrastructure.controller;
 
 import com.google.gson.Gson;
 import com.lasalle.sd2.g2.users.application.CreateUser;
-import com.lasalle.sd2.g2.users.domain.User;
-import com.lasalle.sd2.g2.users.infrastructure.dto.CreateUserResponseBody;
+import com.lasalle.sd2.g2.users.application.dto.CreateUserResponseBody;
 import com.lasalle.sd2.g2.users.infrastructure.repository.InMemoryUsersRepository;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,8 +18,7 @@ public class UsersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         CreateUser createUser = new CreateUser(new InMemoryUsersRepository());
 
-        User user = createUser.execute();
-        CreateUserResponseBody responseBody = new CreateUserResponseBody(user.getUserId().toString());
+        CreateUserResponseBody responseBody = createUser.execute();
 
         resp.getWriter().println(new Gson().toJson(responseBody));
         resp.setContentType("application/json");

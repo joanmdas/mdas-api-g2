@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.users.infrastructure.dto;
+package com.lasalle.sd2.g2.users.application.dto;
 
 import java.io.Serializable;
 
@@ -10,5 +10,9 @@ public class CreateUserResponseBody implements Serializable {
 
     public CreateUserResponseBody(String userId) {
         this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

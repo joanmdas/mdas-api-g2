@@ -1,4 +1,4 @@
-package com.lasalle.sd2.g2.users.infrastructure.dto;
+package com.lasalle.sd2.g2.users.application.dto;
 
 import java.io.Serializable;
 
