@@ -52,7 +52,8 @@ The expected response is 201 code. It can also return a JSON with the message th
 
 
 ## Pokemons module
-Execute "Create Pokemon Details" in the postman application.
+### Get pokemon details
+Execute "Get Pokemon Details" in the postman application.
 
 The response body will contain the pokemon information based on the id provided in the URI.
 
